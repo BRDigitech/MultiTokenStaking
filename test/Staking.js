@@ -221,7 +221,7 @@ describe("MultiTokenStaking", function () {
       const StakingV2 = await ethers.getContractFactory("MultiTokenStaking");
       const stakingV2 = await upgrades.upgradeProxy(await staking.getAddress(), StakingV2);
 
-      // Verify state is preserved
+      // verify state is preserved
       expect(await stakingV2.usdt()).to.equal(await usdt.getAddress());
     });
 
