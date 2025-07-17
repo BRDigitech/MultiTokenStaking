@@ -1,13 +1,26 @@
 # Sample Hardhat Project
+# Introduction
+We have developed a Multi-Token Staking Contract that allows users to stake USDT, USDC, and DAI (Dummy tokens for first phase) and earn rewards. This document outlines the contract's features, current implementation, and future upgrades.
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+# Current Implementation (Phase 1)
+## Multi-Token Staking : USDT, USDC, or DAI
+### Each token has its own staking pool
+### Tiered APY System
+Tier	Min. Stake	APY	Lock Period
+1	100 tokens	5%	30 days
+2	1,000	8%	90 days
+3	5,000	12%	180 days
 
-Try running some of the following tasks:
+### Reward Distribution
+Rewards are paid from a pooled reserve (USDT + USDC + DAI)
+Proportional distribution based on pool liquidity
+Contract tracks stake time + tier.
+Claim rewards anytime or unstake after lock period.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+### Security & Upgradability
+- Pausable (emergency stops)
+- Reentrancy protection
+- Upgradeable via proxy pattern
+
+<img src="assets/staking.png" alt="Staking Contract Architecture" width="500">
+
